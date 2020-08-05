@@ -13,13 +13,12 @@ const tasks = {
     },{
         text: 'Clean yard',
         completed: false
-    }, {
+    },{
         text: 'Film course',
         completed: false
     }],
-    getTasksToDo() {
-        return this.tasks.filter((tasks) => tasks.completed === false
-        
+    getTasksToDo(){
+        return this.tasks.filter((tasks) => tasks.completed === false)
         
     }
 }
