@@ -31,7 +31,7 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    builer: {
+    builder: {
         title: {
             describe: 'Note title',
             demandOption: true,
@@ -48,7 +48,11 @@ yargs.command({
     command: 'list',
     describe: 'Listing the notes',
     handler() {
-        console.log('Listing all the notes')
+       const notes = notesUtil.loadNotes()
+       console.log(chalk.blue.inverse('Your notes: '))
+       notes.forEach((note) => {
+           console.log(note.title)
+       })
     }
 })
 
@@ -56,8 +60,15 @@ yargs.command({
 yargs.command({
     command: 'read', 
     describe: 'Reading the notes',
-    handler() {
-        console.log('Reading the notes')
+    builder: {
+        Title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notesUtil.readNote(argv.title)
     }
 })
 
